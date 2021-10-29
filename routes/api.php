@@ -10,5 +10,7 @@ Route::prefix('v1')->group(function () {
     Route::post('logout', 'AuthController@logout')->middleware('auth:sanctum');
     Route::middleware('auth:sanctum')->name('admin.')->prefix('admin')->group(function () {
         Route::post('logout', 'AuthController@logout');
+        route::apiResource('product', 'ProductController');
+        route::apiResource('order', 'OrderController');
     });
 });

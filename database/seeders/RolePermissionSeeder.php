@@ -29,17 +29,23 @@ class RolePermissionSeeder extends Seeder
         Schema::enableForeignKeyConstraints();
 
 
+        // Create Roles
+        $roleSuperAdmin = Role::create([ 'name' => 'superadmin']);
+        $roleUser = Role::create([ 'name' => 'user']);
 
         $user = new User;
         $user->name = 'admin';
         $user->email = 'admin@gmail.com';
-        $user->password = bcrypt('password');
+        $user->password ='password';
+        $user->save();
+
+        $user = new User;
+        $user->name = 'user';
+        $user->email = 'user@gmail.com';
+        $user->password ='password';
         $user->save();
 
 
-        // Create Roles
-        $roleSuperAdmin = Role::create([ 'name' => 'superadmin']);
-        $roleUser = Role::create([ 'name' => 'user']);
 
 
         // Permission List as array
@@ -121,7 +127,7 @@ class RolePermissionSeeder extends Seeder
         // User Permission
 
         $userPermissions = [
-            'profile.view', 
+            'profile.view',
             'profile.edit',
 
             'order.view',

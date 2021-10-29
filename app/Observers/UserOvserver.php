@@ -21,7 +21,7 @@ class UserOvserver
      */
     public function created(User $user)
     {
-        $user->assignRole($this->request->role);
+        $user->assignRole($this->request->role ?? 'user');
     }
 
     /**

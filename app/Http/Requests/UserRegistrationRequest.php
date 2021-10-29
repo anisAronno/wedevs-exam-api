@@ -23,12 +23,14 @@ class UserRegistrationRequest extends FormRequest
      */
     public function rules()
     {
+        if (! app()->runningInConsole()) {
         return [
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$this->id.',id',
-            'password' => 'required',
+            'password' => 'required|min:6',
             'c_password' => 'required|same:password',
-            'role' => 'required|string|exists:roles,name',
+            'role' => 'nullable|string|exists:roles,name',
         ];
+        }
     }
 }

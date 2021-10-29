@@ -15,6 +15,7 @@ class AuthController extends BaseController
             $user = Auth::user();
             $success['token'] =  $user->createToken('MyApp')->plainTextToken;
             $success['name'] =  $user->name;
+            $success['role'] =  $user->getRoleNames()[0];
             return $this->sendResponse($success, 'User login successfully.');
         }
         else{
@@ -27,6 +28,7 @@ class AuthController extends BaseController
         $user = User::create($request->only('name', 'email', 'password'));
         $success['token'] =  $user->createToken('MyApp')->plainTextToken;
         $success['name'] =  $user->name;
+        $success['role'] =  $user->getRoleNames()[0];
         if($user){
             return $this->sendResponse($success, 'User register successfully.');
         }else{
