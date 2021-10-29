@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Jobs\OrderCreateJob;
 use App\Models\Order;
 use App\Models\OrderItem;
 
@@ -29,6 +30,7 @@ class OrderOvserver
                 'quantity'=>$product["quantity"],
             ]);
         }
+        dispatch(new OrderCreateJob($order));
     }
 
     /**

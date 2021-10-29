@@ -33,19 +33,6 @@ class RolePermissionSeeder extends Seeder
         $roleSuperAdmin = Role::create([ 'name' => 'superadmin']);
         $roleUser = Role::create([ 'name' => 'user']);
 
-        $user = new User;
-        $user->name = 'admin';
-        $user->email = 'admin@gmail.com';
-        $user->password ='password';
-        $user->save();
-
-        $user = new User;
-        $user->name = 'user';
-        $user->email = 'user@gmail.com';
-        $user->password ='password';
-        $user->save();
-
-
 
 
         // Permission List as array
@@ -135,6 +122,25 @@ class RolePermissionSeeder extends Seeder
         ];
 
         $roleUser->syncPermissions($userPermissions);
+
+
+
+        $admin = new User;
+        $admin->name = 'admin';
+        $admin->email = 'admin@gmail.com';
+        $admin->password ='password';
+        if( $admin->save()){
+            $admin->assignRole('superadmin');
+        }
+
+        $user = new User;
+        $user->name = 'user';
+        $user->email = 'user@gmail.com';
+        $user->password ='password';
+        $user->save();
+        if( $user->save()){
+            $user->assignRole('user');
+        }
 
 
 

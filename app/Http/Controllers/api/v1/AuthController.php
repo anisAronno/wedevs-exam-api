@@ -13,10 +13,11 @@ class AuthController extends BaseController
     {
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
             $user = Auth::user();
-            $success['token'] =  $user->createToken('MyApp')->plainTextToken;
-            $success['name'] =  $user->name;
-            $success['role'] =  $user->getRoleNames()[0];
-            return $this->sendResponse($success, 'User login successfully.');
+            $data['token'] =  $user->createToken('MyApp')->plainTextToken;
+            $data['name'] =  $user->name;
+            $data['role'] =  $user->getRoleNames()[0];
+            $data['notification'][] = Auth::user()->notifications;
+            return $this->sendResponse($data, 'User login successfully.');
         }
         else{
             return $this->sendError('Unauthorised.', ['error'=>'Unauthorised']);
@@ -45,4 +46,11 @@ class AuthController extends BaseController
         return $this->sendError('logout.', ['error'=>'Logout Failed']);
        }
     }
+    public function readNotification()
+    {
+        Auth::user()->unreadNotifications->markAsRead();
+        return $this->sendResponse('Notification', 'Mark Read At Notification successfully.');
+    }
+
+
 }

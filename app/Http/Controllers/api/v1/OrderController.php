@@ -4,8 +4,8 @@
 namespace App\Http\Controllers\api\v1;
 use App\Http\Controllers\api\v1\BaseController as BaseController;
 use App\Models\Order;
-use App\Models\OrderItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends BaseController
 {
@@ -38,8 +38,8 @@ class OrderController extends BaseController
      */
     public function store(Request $request)
     {
-        $data['order'] =Order::create($request->only('customer_name','customer_mobile','address','district', 'total_price', 'user_id' ));
-        return $this->sendResponse($data, 'Order Created Successfully');
+        $order =Order::create($request->only('customer_name','customer_mobile','address','district', 'total_price', 'user_id' ));
+        return $this->sendResponse($order, 'Order Created Successfully');
     }
 
     /**
@@ -50,7 +50,8 @@ class OrderController extends BaseController
      */
     public function show(Order $order)
     {
-        //
+         $data['order'] = $order->with('orderItems')->first();
+        return $this->sendResponse($data, 'All Order List');
     }
 
     /**
@@ -84,6 +85,7 @@ class OrderController extends BaseController
      */
     public function destroy(Order $order)
     {
-        //
+        $order->delete();
+        return $this->sendResponse('Deleted', 'Order Deleted Successfully');
     }
 }
