@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Order;
 use App\Models\User;
+use App\Observers\OrderOvserver;
 use App\Observers\UserOvserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -30,5 +32,6 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         User::observe(UserOvserver::class);
+        Order::observe(OrderOvserver::class);
     }
 }

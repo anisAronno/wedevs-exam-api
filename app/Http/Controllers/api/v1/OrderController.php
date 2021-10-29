@@ -16,7 +16,7 @@ class OrderController extends BaseController
      */
     public function index()
     {
-        $data['order'] =  Order::all();
+        $data['order'] =  Order::with('orderItems')->get();
         return $this->sendResponse($data, 'All Order List');
     }
 
@@ -38,24 +38,7 @@ class OrderController extends BaseController
      */
     public function store(Request $request)
     {
-        $data['order'] =Order::create($request->only(
-            'customer_name',
-            'customer_mobile',
-            'address',
-            'district',
-            'total_price',
-            'user_id',
-        ));
-        foreach ($request->products as $product_id => $product) {
-            OrderItem::create([
-                'order_id'=>$data['order']->id,
-                'product_id'=>$product_id,
-                'price'=>$product["price"],
-                'quantity'=>$product["quantity"],
-            ]);
-        }
-
-
+        $data['order'] =Order::create($request->only('customer_name','customer_mobile','address','district', 'total_price', 'user_id' ));
         return $this->sendResponse($data, 'Order Created Successfully');
     }
 

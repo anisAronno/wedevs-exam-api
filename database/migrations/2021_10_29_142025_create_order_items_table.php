@@ -19,8 +19,8 @@ class CreateOrderItemsTable extends Migration
             $table->unsignedBigInteger('product_id')->nullable();
             $table->decimal('price',10,2);
             $table->integer('quantity');
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
 
         });
