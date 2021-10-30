@@ -18,8 +18,8 @@ class CreateProductsTable extends Migration
             $table->string('name', 125);
             $table->text('description');
             $table->decimal('price', 8, 2);
-            $table->integer('quantity')->nullable(); 
-            $table->string('image', 255);
+            $table->integer('quantity')->nullable();
+            $table->string('image', 255)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

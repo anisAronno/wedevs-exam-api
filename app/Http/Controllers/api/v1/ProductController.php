@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\api\v1;
 use App\Http\Controllers\api\v1\BaseController as BaseController;
+use App\Http\Requests\ProductRequest;
 use App\Models\Product;
+use App\Services\ProductServices;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends BaseController
 {
@@ -14,19 +17,13 @@ class ProductController extends BaseController
      */
     public function index()
     {
+        if (is_null($this->user) || !$this->user->can('product.view')) {
+            abort(403, 'Sorry !! You are Unauthorized to view any product !');
+        }
         $data['product'] =  Product::all();
         return $this->sendResponse($data, 'All Product List');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -34,9 +31,15 @@ class ProductController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+
+    public function store(Request $request, ProductServices $productServices)
     {
-        $data['product'] =Product::create($request->all());
+        if (is_null($this->user) || !$this->user->can('product.store')) {
+            abort(403, 'Sorry !! You are Unauthorized to store any product !');
+        }
+
+        $image = $productServices->image($request);
+        $data['product'] = Product::create(array_merge($request->all(), $image));
         return $this->sendResponse($data, 'Product Created Successfully');
     }
 
@@ -48,20 +51,13 @@ class ProductController extends BaseController
      */
     public function show(Product $product)
     {
+        if (is_null($this->user) || !$this->user->can('product.show')) {
+            abort(403, 'Sorry !! You are Unauthorized to show any product !');
+        }
         $data['product'] =$product;
         return $this->sendResponse($data, 'Product Show Successfully');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Product $product)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -70,11 +66,14 @@ class ProductController extends BaseController
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product, ProductServices $productServices)
     {
-
-        $product->update($request->all());
-        return $this->sendResponse($product, 'Product Updated Successfully');
+        if (is_null($this->user) || !$this->user->can('product.update')) {
+            abort(403, 'Sorry !! You are Unauthorized to update any product !');
+        }
+        $image = $productServices->image($request);
+        $data['product'] = $product->update(array_merge($request->all(), $image));
+        return $this->sendResponse($data, 'Product Updated Successfully');
     }
 
     /**
@@ -83,8 +82,12 @@ class ProductController extends BaseController
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
-    { 
+    public function destroy(Product $product, ProductServices $productService)
+    {
+        if (is_null($this->user) || !$this->user->can('product.delete')) {
+            abort(403, 'Sorry !! You are Unauthorized to delete any product !');
+        }
+        $productService->imageDelete($product->image);
         $product->delete();
         return $this->sendResponse('Deleted', 'Product Deleted Successfully');
     }
