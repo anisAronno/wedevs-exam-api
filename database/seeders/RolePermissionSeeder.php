@@ -48,9 +48,12 @@ class RolePermissionSeeder extends Seeder
             [
                 'group_name' => 'role',
                 'permissions' => [
-                    'role.create',
                     'role.view',
+                    'role.create',
+                    'role.store',
+                    'role.show',
                     'role.edit',
+                    'role.update',
                     'role.delete',
                     'role.approve',
                 ]
@@ -58,9 +61,12 @@ class RolePermissionSeeder extends Seeder
             [
                 'group_name' => 'order',
                 'permissions' => [
-                    'order.create',
                     'order.view',
+                    'order.create',
+                    'order.store',
+                    'order.show',
                     'order.edit',
+                    'order.update',
                     'order.delete',
                     'order.approve',
                 ]
@@ -69,21 +75,28 @@ class RolePermissionSeeder extends Seeder
             [
                 'group_name' => 'product',
                 'permissions' => [
-                    'product.create',
                     'product.view',
+                    'product.create',
+                    'product.store',
+                    'product.show',
                     'product.edit',
+                    'product.update',
                     'product.delete',
+                    'product.approve',
                 ]
             ],
 
             [
                 'group_name' => 'user',
                 'permissions' => [
-
-                    'user.create',
                     'user.view',
+                    'user.create',
+                    'user.store',
+                    'user.show',
                     'user.edit',
+                    'user.update',
                     'user.delete',
+                    'user.approve',
                 ]
             ],
 
@@ -92,8 +105,12 @@ class RolePermissionSeeder extends Seeder
                 'permissions' => [
                     'profile.view',
                     'profile.create',
-                    'profile.delete',
+                    'profile.store',
+                    'profile.show',
                     'profile.edit',
+                    'profile.update',
+                    'profile.delete',
+                    'profile.approve',
                 ]
             ],
 
@@ -116,7 +133,7 @@ class RolePermissionSeeder extends Seeder
         $userPermissions = [
             'profile.view',
             'profile.edit',
-
+            'profile.update',
             'order.view',
             'order.edit',
         ];

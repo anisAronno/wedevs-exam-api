@@ -57,7 +57,7 @@ class OrderNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'order_link'=>route('admin.order.show', $this->order->id)
+            'order_link'=>"<a href=". route('admin.order.show', $this->order->id) .">New Order Order Id #".$this->order->id."</a>"
         ];
     }
 }

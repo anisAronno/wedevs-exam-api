@@ -2,8 +2,7 @@
 
 namespace App\Observers;
 
-use App\Models\Product;
-use Illuminate\Support\Str;
+use App\Models\Product; 
 class ProductOvserver
 {
     protected $request;
@@ -20,7 +19,7 @@ class ProductOvserver
      */
     public function created(Product $product)
     {
-       
+
     }
 
     /**

@@ -16,11 +16,12 @@ class AuthController extends BaseController
             $data['token'] =  $user->createToken('MyApp')->plainTextToken;
             $data['name'] =  $user->name;
             $data['role'] =  $user->getRoleNames()[0];
+            $data['permission'] =  $user->getAllPermissions();
             $data['notification'][] = Auth::user()->notifications;
             return $this->sendResponse($data, 'User login successfully.');
         }
         else{
-            return $this->sendError('Unauthorised.', ['error'=>'Unauthorised']);
+            return $this->sendError('Unauthorised.', ['error'=>'Email or Password Doesn\'t Match']);
         }
     }
     public function register(UserRegistrationRequest $request)
