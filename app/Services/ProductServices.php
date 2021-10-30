@@ -1,6 +1,8 @@
 <?php
 namespace app\services;
 
+use Illuminate\Support\Facades\Storage;
+
 class ProductServices
 {
 
@@ -23,6 +25,15 @@ class ProductServices
             return $image;
         }else{
             return [];
+        }
+    }
+
+    public function imageDelete($image)
+    {
+        if($image) {
+            $delete_imageArr = (explode('/', $image));
+            $delete_image = end($delete_imageArr);
+            Storage::delete("public/" . $delete_image);
         }
     }
 }
