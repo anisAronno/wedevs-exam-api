@@ -17,10 +17,8 @@ class ProductController extends BaseController
      */
     public function index()
     {
-        if (is_null($this->user) || !$this->user->can('product.view')) {
-            abort(403, 'Sorry !! You are Unauthorized to view any product !');
-        }
-        $data['product'] =  Product::all();
+
+        $data =  Product::all();
         return $this->sendResponse($data, 'All Product List');
     }
 
