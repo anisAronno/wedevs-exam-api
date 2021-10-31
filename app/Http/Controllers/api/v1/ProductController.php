@@ -49,9 +49,6 @@ class ProductController extends BaseController
      */
     public function show(Product $product)
     {
-        if (is_null($this->user) || !$this->user->can('product.show')) {
-            abort(403, 'Sorry !! You are Unauthorized to show any product !');
-        }
         $data['product'] =$product;
         return $this->sendResponse($data, 'Product Show Successfully');
     }
