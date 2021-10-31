@@ -18,7 +18,7 @@ class ProductController extends BaseController
     public function index()
     {
 
-        $data['product'] =  Product::all();
+        $data =  Product::all();
         return $this->sendResponse($data, 'All Product List');
     }
 
@@ -49,7 +49,7 @@ class ProductController extends BaseController
      */
     public function show(Product $product)
     {
-        
+
         $data['product'] =$product;
         return $this->sendResponse($data, 'Product Show Successfully');
     }
