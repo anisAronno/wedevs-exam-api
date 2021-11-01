@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('v1')->group(function () {
     Route::post('login', 'AuthController@login');
     Route::post('register', 'AuthController@register');
+    route::apiResource('product', 'ProductController')->except('update');
     Route::post('logout', 'AuthController@logout')->middleware('auth:sanctum');
     route::apiResource('product', 'ProductController')->except('update');
     route::apiResource('order', 'OrderController')->except('update');
