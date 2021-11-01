@@ -6,6 +6,7 @@ use App\Http\Requests\UserLoginRequest;
 use App\Http\Requests\UserRegistrationRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class AuthController extends BaseController
 {
@@ -18,6 +19,7 @@ class AuthController extends BaseController
             $data['role'] =  $user->getRoleNames()[0];
             $data['permission'] =  $user->getAllPermissions();
             $data['notification'][] = Auth::user()->notifications;
+            Log::debug( $data['token']);
             return $this->sendResponse($data, 'User login successfully.');
         }
         else{
@@ -27,11 +29,13 @@ class AuthController extends BaseController
     public function register(UserRegistrationRequest $request)
     {
 
+        Log::debug($request);
         $user = User::create($request->only('name', 'email', 'password'));
         $success['token'] =  $user->createToken('MyApp')->plainTextToken;
         $success['name'] =  $user->name;
         $success['role'] =  $user->getRoleNames()[0];
         if($user){
+            Log::debug($success);
             return $this->sendResponse($success, 'User register successfully.');
         }else{
          return $this->sendError('register.', ['error'=>'User Registration Failed']);
