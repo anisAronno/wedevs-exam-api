@@ -29,7 +29,7 @@ class OrderRequest extends FormRequest
             'address' => 'required',
             'district' => 'required',
             'total_price' => 'required',
-            'user_id' => 'required', 
+            'user_id' => 'required',
         ];
     }
 }

@@ -17,10 +17,10 @@ class OrderController extends BaseController
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    { 
         // if (is_null($this->user) || !$this->user->can('order.view')) {
         //     abort(403, 'Sorry !! You are Unauthorized to view any Order !');
-        // }
+        // } 
         $data['order'] =  Order::with('orderItems')->get();
         return $this->sendResponse($data, 'All Order List');
     }
@@ -42,8 +42,7 @@ class OrderController extends BaseController
      * @return \Illuminate\Http\Response
      */
     public function store(OrderRequest $request)
-    {
-        // dd( $request);
+    { 
         // if (is_null($this->user) || !$this->user->can('order.store')) {
         //     abort(403, 'Sorry !! You are Unauthorized to Store any Order !');
         // }
