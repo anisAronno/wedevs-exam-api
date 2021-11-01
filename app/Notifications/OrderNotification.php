@@ -44,7 +44,7 @@ class OrderNotification extends Notification
     {
         return (new MailMessage)
                     ->line('New Order Placed By '. $this->order->customer_name)
-                    ->action('View Order', url(route('admin.order.show', $this->order->id)))
+                    ->action('View Order', url(route('order.show', $this->order->id)))
                     ->line('Thank you');
     }
 
@@ -57,7 +57,7 @@ class OrderNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'order_link'=>"<a href=". route('admin.order.show', $this->order->id) .">New Order Order Id #".$this->order->id."</a>"
+            'order_link'=>"<a href=". route('order.show', $this->order->id) .">New Order Order Id #".$this->order->id."</a>"
         ];
     }
 }

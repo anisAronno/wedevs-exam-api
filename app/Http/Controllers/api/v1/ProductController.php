@@ -49,7 +49,6 @@ class ProductController extends BaseController
      */
     public function show(Product $product)
     {
-
         $data['product'] =$product;
         return $this->sendResponse($data, 'Product Show Successfully');
     }
