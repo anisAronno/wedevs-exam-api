@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Jobs\OrderCreateJob;
 use App\Models\Order;
 use App\Models\OrderItem;
+use Illuminate\Support\Facades\Log;
 
 class OrderOvserver
 {
@@ -22,13 +23,16 @@ class OrderOvserver
      */
     public function created(Order $order)
     {
+
         foreach ($this->request->products as $product) {
-            OrderItem::create([
+            $orderItem=[
                 'order_id'=>$order->id,
-                'product_id'=>$product["product_id"],
-                'price'=>$product["price"],
-                'quantity'=>$product["quantity"],
-            ]);
+                'product_id'=>$product['product']['id'],
+                'price'=>$product['product']['price'],
+                'quantity'=>$product['product']['quantity'],
+            ];
+            Log::debug($orderItem);
+            OrderItem::create($orderItem);
         }
         dispatch(new OrderCreateJob($order));
     }

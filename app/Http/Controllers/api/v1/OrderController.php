@@ -18,9 +18,9 @@ class OrderController extends BaseController
      */
     public function index()
     {
-        if (is_null($this->user) || !$this->user->can('order.view')) {
-            abort(403, 'Sorry !! You are Unauthorized to view any Order !');
-        }
+        // if (is_null($this->user) || !$this->user->can('order.view')) {
+        //     abort(403, 'Sorry !! You are Unauthorized to view any Order !');
+        // }
         $data['order'] =  Order::with('orderItems')->get();
         return $this->sendResponse($data, 'All Order List');
     }
@@ -43,9 +43,10 @@ class OrderController extends BaseController
      */
     public function store(OrderRequest $request)
     {
-        if (is_null($this->user) || !$this->user->can('order.store')) {
-            abort(403, 'Sorry !! You are Unauthorized to Store any Order !');
-        }
+        // dd( $request);
+        // if (is_null($this->user) || !$this->user->can('order.store')) {
+        //     abort(403, 'Sorry !! You are Unauthorized to Store any Order !');
+        // }
         $order =Order::create($request->only('customer_name','customer_mobile','address','district', 'total_price', 'user_id' ));
         return $this->sendResponse($order, 'Order Created Successfully');
     }
@@ -58,9 +59,10 @@ class OrderController extends BaseController
      */
     public function show(Order $order)
     {
-        if (is_null($this->user) || !$this->user->can('order.show')) {
-            abort(403, 'Sorry !! You are Unauthorized to show any Order !');
-        }
+     
+        // if (is_null($this->user) || !$this->user->can('order.show')) {
+        //     abort(403, 'Sorry !! You are Unauthorized to show any Order !');
+        // }
          $data['order'] = $order->with('orderItems')->first();
         return $this->sendResponse($data, 'All Order List');
     }
