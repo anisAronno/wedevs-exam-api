@@ -25,11 +25,12 @@ class OrderOvserver
     {
 
         foreach ($this->request->products as $product) {
-            $orderItem=[
-                'order_id'=>$order->id,
-                'product_id'=>$product['product']['id'],
-                'price'=>$product['product']['price'],
-                'quantity'=>$product['product']['quantity'],
+            $orderItem = [
+                'order_id' => $order->id,
+                'product_id' => $product['product']['id'],
+                'product_name' => $product['product']['product_name'],
+                'price' => $product['product']['price'],
+                'quantity' => $product['product']['quantity'],
             ];
             Log::debug($orderItem);
             OrderItem::create($orderItem);
@@ -45,7 +46,18 @@ class OrderOvserver
      */
     public function updated(Order $order)
     {
-        //
+        OrderItem::where('order_id', $order->id)->delete();
+
+        foreach ($this->request->order_items as $items) {
+            $array = array(
+                "product_id" => $items['product_id'],
+                "price" => $items['price'],
+                "order_id" => $order->id,
+                "quantity" => $items['quantity'],
+            );
+
+            OrderItem::insert($array);
+        }
     }
 
     /**
