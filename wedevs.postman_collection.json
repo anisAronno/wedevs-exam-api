@@ -1,0 +1,411 @@
+{
+	"info": {
+		"_postman_id": "6c5ef38b-90b6-4044-8504-680010935005",
+		"name": "wedevs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user/product",
+			"item": [
+				{
+					"name": "product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "25|xXf4q9GlBzs26YXRFRqNc34xF8OutfFvXgNntmoW",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/admin/product",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "25|xXf4q9GlBzs26YXRFRqNc34xF8OutfFvXgNntmoW",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/admin/product/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"product",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Registration",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/register?email=user30@gmail.com&password=password&name=user&c_password=password",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"register"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "user30@gmail.com"
+								},
+								{
+									"key": "password",
+									"value": "password"
+								},
+								{
+									"key": "name",
+									"value": "user"
+								},
+								{
+									"key": "c_password",
+									"value": "password"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/login?email=admin@gmail.com&password=password",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"login"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "admin@gmail.com"
+								},
+								{
+									"key": "password",
+									"value": "password"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "product",
+			"item": [
+				{
+					"name": "Create Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "25|xXf4q9GlBzs26YXRFRqNc34xF8OutfFvXgNntmoW",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/user/Downloads/1-1-0.jpg"
+								},
+								{
+									"key": "name",
+									"value": "product ",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "product rgfhfdr",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "50",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "10101",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/admin/product",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "25|xXf4q9GlBzs26YXRFRqNc34xF8OutfFvXgNntmoW",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/admin/product/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"product",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "order",
+			"item": [
+				{
+					"name": "order Status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "25|xXf4q9GlBzs26YXRFRqNc34xF8OutfFvXgNntmoW",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/admin/order/status/71?status=Processing",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"order",
+								"status",
+								"71"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "Processing"
+								},
+								{
+									"key": "",
+									"value": "application/json",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|1A8X9JKPj5VXrE8tyCtcSq5r4ZEB6YdxS0ehHsyY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customer_name\":\"Anis22\",\r\n    \"customer_mobile\":\"0505050500101\",\r\n    \"address\":\"basjnbjasnajsn\", \r\n    \"district\":\"Dhaka\",\r\n    \"total_price\":\"50\",\r\n    \"user_id\":\"1\",\r\n     \"products\":[\r\n          {\r\n            \"product\": {\r\n              \"id\": 5,\r\n              \"product_name\":\"basjnbjasnajsn\", \r\n              \"name\": \"Matteo\",\r\n              \"description\": \"Dolor neque voluptates incidunt a quod id. Quos officia ducimus distinctio et qui et. Nihil nostrum molestias minima quisquam. Ea distinctio alias necessitatibus iusto suscipit doloribus quos.\",\r\n              \"price\": \"1143.00\",\r\n              \"quantity\": 1072,\r\n              \"image\": \"https://via.placeholder.com/500x500.png/00aa44?text=1+similique\",\r\n              \"created_at\": \"2021-10-30T10:24:54.000000Z\",\r\n              \"updated_at\": \"2021-10-30T10:24:54.000000Z\",\r\n              \"deleted_at\": null\r\n            },\r\n            \"quantity\": 1\r\n          },\r\n          {\r\n            \"product\": {\r\n              \"id\": 6,\r\n              \"name\": \"Hilbert\",\r\n              \"product_name\":\"basjnbjasnajsn\", \r\n              \"description\": \"Ut qui hic aut voluptatem aut et suscipit. Sed explicabo unde consequatur doloremque amet in est et. Tempora consequatur labore inventore nemo. Voluptas iure labore facere natus qui.\",\r\n              \"price\": \"1157.00\",\r\n              \"quantity\": 1029,\r\n              \"image\": \"https://via.placeholder.com/500x500.png/0000bb?text=1+et\",\r\n              \"created_at\": \"2021-10-30T10:24:54.000000Z\",\r\n              \"updated_at\": \"2021-10-30T10:24:54.000000Z\",\r\n              \"deleted_at\": null\r\n            },\r\n            \"quantity\": 1\r\n          }\r\n]\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admin/order",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|K5QnwZglciNQ2erSYw9WqjwnqJRfdRv4EoQeaCwk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/admin/order",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSingleProduct",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/admin/order/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"order",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|K5QnwZglciNQ2erSYw9WqjwnqJRfdRv4EoQeaCwk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"order_id\":1,\r\n    \"total_price\":\"50\",\r\n    \"order_items\":[\r\n        {            \r\n            \"id\": 1,\r\n            \"product_id\":1, \r\n            \"price\": \"1157.00\",\r\n            \"quantity\": 1029\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"product_id\":2, \r\n            \"price\": \"1057.00\",\r\n            \"quantity\": 21\r\n        },\r\n        {\r\n            \"id\": 3,\r\n            \"product_id\":3, \r\n            \"price\": \"10057.00\",\r\n            \"quantity\": 2\r\n        },\r\n        {            \r\n            \"id\": 4,\r\n            \"product_id\":4, \r\n            \"price\": \"1157.00\",\r\n            \"quantity\": 1029\r\n        },\r\n        {\r\n            \"id\": 5,\r\n            \"product_id\":9, \r\n            \"price\": \"1057.00\",\r\n            \"quantity\": 21\r\n        },\r\n        {\r\n            \"id\": 6,\r\n            \"product_id\":8, \r\n            \"price\": \"10057.00\",\r\n            \"quantity\": 2\r\n        }\r\n]\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admin/order/update/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"order",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
