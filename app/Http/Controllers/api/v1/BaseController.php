@@ -17,6 +17,8 @@ class BaseController extends Controller
             return $next($request);
         });
     }
+
+
     public function sendResponse($result, $message)
     {
     	$response = [
@@ -37,17 +39,23 @@ class BaseController extends Controller
      */
     public function sendError($error, $errorMessages = [], $code = 404)
     {
-    	$response = [
-            'success' => false,
-            'message' => $error,
-        ];
 
 
-        if(!empty($errorMessages)){
-            $response['data'] = $errorMessages;
+        try {
+            $response = [
+                'success' => false,
+                'message' => $error,
+            ];
+
+
+            if(!empty($errorMessages)){
+                $response['data'] = $errorMessages;
+            }
+
+
+            return response()->json($response, $code);
+        } catch (\Throwable $th) {
+            return response()->json( $th->getMessage());
         }
-
-
-        return response()->json($response, $code);
     }
 }

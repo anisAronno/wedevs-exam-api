@@ -72,19 +72,6 @@ class RolePermissionSeeder extends Seeder
                 ]
             ],
 
-            [
-                'group_name' => 'product',
-                'permissions' => [
-                    'product.view',
-                    'product.create',
-                    'product.store',
-                    'product.show',
-                    'product.edit',
-                    'product.update',
-                    'product.delete',
-                    'product.approve',
-                ]
-            ],
 
             [
                 'group_name' => 'user',
