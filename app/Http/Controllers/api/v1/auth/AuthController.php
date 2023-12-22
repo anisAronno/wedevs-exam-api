@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\api\v1;
+namespace App\Http\Controllers\api\v1\auth;
 use App\Http\Controllers\api\v1\BaseController as BaseController;
 use App\Http\Requests\UserLoginRequest;
 use App\Http\Requests\UserRegistrationRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends BaseController
 {
@@ -36,6 +35,7 @@ class AuthController extends BaseController
         $success['name'] =  $user->name;
         $success['role'] =  $user->getRoleNames()[0];
         if($user){
+            Log::debug($success);
             return $this->sendResponse($success, 'User register successfully.');
         }else{
          return $this->sendError('register.', ['error'=>'User Registration Failed']);

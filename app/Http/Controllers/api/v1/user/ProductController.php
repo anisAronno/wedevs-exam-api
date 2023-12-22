@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\api\v1;
+namespace App\Http\Controllers\api\v1\user;
 
-use App\Http\Controllers\Controller; 
+use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\api\v1\BaseController as BaseController;
 
-class UserController extends Controller
+class ProductController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data=Auth::user();
-        return $this->sendResponse($data, 'User login successfully.');
+        $data =  Product::all();
+        return $this->sendResponse($data, 'All Product List');
     }
 
     /**
@@ -46,9 +47,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        //
+        $data['product'] =$product;
+        return $this->sendResponse($data, 'Product Show Successfully');
     }
 
     /**

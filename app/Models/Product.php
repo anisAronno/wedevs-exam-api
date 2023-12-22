@@ -11,5 +11,9 @@ class Product extends Model
     use HasFactory, SoftDeletes;
     protected $guarded = ['id'];
 
-   
+    public function orderItem()
+    {
+        return $this->hasMany(OrderItem::class );
+    }
+
 }
